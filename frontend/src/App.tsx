@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 
 // Layout
 import Navbar from './components/Navbar';
-import Footer from './pages/Footer';
+import Footer from './pages/Footer'; // assure-toi que le fichier s'appelle Footer.tsx
 import DashboardLayout from './layouts/DashboardLayout';
 
 // Pages publiques
@@ -20,7 +20,7 @@ import Prescolaire from './pages/Prescolaire';
 import Primaire from './pages/Primaire';
 import Secondaire from './pages/Secondaire';
 import ReglementInterieur from './pages/ReglementInterieur';
-import College from './pages/College';
+import College from './pages/College'; // renommé en College.tsx
 import Lycee from './pages/Lycee';
 import Admission from './pages/Admission';
 import Actualites from './pages/Actualites';
@@ -29,8 +29,6 @@ import Faq from './pages/Faq';
 import Contact from './pages/Contact';
 import MentionsLegales from './pages/MentionsLegales';
 import Confidentialite from './pages/Confidentialite';
-
-// --- NOUVELLES PAGES ---
 import Activites from './pages/Activites';
 import Resultats from './pages/Resultats';
 
@@ -38,44 +36,60 @@ import Resultats from './pages/Resultats';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 
+// Layout public réutilisable
+const PublicLayout = () => (
+  <>
+    <Navbar />
+    <main className="flex-grow">
+      <Outlet />
+    </main>
+    <Footer />
+  </>
+);
+
 function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
         <Routes>
-          {/* PUBLIC */}
-          <Route path="/" element={<><Navbar /><Home /><Footer /></>} />
-          <Route path="/qui-sommes-nous" element={<><Navbar /><About /><Footer /></>} />
-          
-          <Route path="/activites" element={<><Navbar /><Activites /><Footer /></>} />
-          <Route path="/resultats" element={<><Navbar /><Resultats /><Footer /></>} />
-          
-          <Route path="/login" element={<><Navbar /><Login /><Footer /></>} />
-          <Route path="/courses" element={<><Navbar /><Courses /><Footer /></>} />
-          <Route path="/courses/:id" element={<><Navbar /><CourseDetail /><Footer /></>} />
-          <Route path="/quiz/:id" element={<><Navbar /><Quiz /><Footer /></>} />
-          <Route path="/mot-du-directeur" element={<><Navbar /><MotDuDirecteur /><Footer /></>} />
-          <Route path="/mission-vision" element={<><Navbar /><MissionVision /><Footer /></>} />
-          <Route path="/ecole" element={<><Navbar /><Ecole /><Footer /></>} />
-          <Route path="/projet-educatif" element={<><Navbar /><ProjetEducatif /><Footer /></>} />
-          <Route path="/prescolaire" element={<><Navbar /><Prescolaire /><Footer /></>} />
-          <Route path="/primaire" element={<><Navbar /><Primaire /><Footer /></>} />
-          <Route path="/secondaire" element={<><Navbar /><Secondaire /><Footer /></>} />
-          <Route path="/reglement-interieur" element={<><Navbar /><ReglementInterieur /><Footer /></>} />
-          <Route path="/college" element={<><Navbar /><College /><Footer /></>} />
-          <Route path="/lycee" element={<><Navbar /><Lycee /><Footer /></>} />
-          <Route path="/admission" element={<><Navbar /><Admission /><Footer /></>} />
-          <Route path="/actualites" element={<><Navbar /><Actualites /><Footer /></>} />
-          <Route path="/parents" element={<><Navbar /><EspaceParent /><Footer /></>} />
-          <Route path="/contact" element={<><Navbar /><Contact /><Footer /></>} />
-          <Route path="/faq" element={<><Navbar /><Faq /><Footer /></>} />
-          <Route path="/mentions" element={<><Navbar /><MentionsLegales /><Footer /></>} />
-          <Route path="/confidentialite" element={<><Navbar /><Confidentialite /><Footer /></>} />
+          {/* ROUTES PUBLIQUES avec layout */}
+          <Route element={<PublicLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/qui-sommes-nous" element={<About />} />
+            <Route path="/activites" element={<Activites />} />
+            <Route path="/resultats" element={<Resultats />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/:id" element={<CourseDetail />} />
+            <Route path="/quiz/:id" element={<Quiz />} />
+            <Route path="/mot-du-directeur" element={<MotDuDirecteur />} />
+            <Route path="/mission-vision" element={<MissionVision />} />
+            <Route path="/ecole" element={<Ecole />} />
+            <Route path="/projet-educatif" element={<ProjetEducatif />} />
+            <Route path="/prescolaire" element={<Prescolaire />} />
+            <Route path="/primaire" element={<Primaire />} />
+            <Route path="/secondaire" element={<Secondaire />} />
+            <Route path="/college" element={<College />} />
+            <Route path="/lycee" element={<Lycee />} />
+            <Route path="/reglement-interieur" element={<ReglementInterieur />} />
+            <Route path="/admission" element={<Admission />} />
+            <Route path="/actualites" element={<Actualites />} />
+            <Route path="/parents" element={<EspaceParent />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/mentions" element={<MentionsLegales />} />
+            <Route path="/confidentialite" element={<Confidentialite />} />
+          </Route>
 
-          {/* PRIVÉ */}
+          {/* ROUTES PRIVÉES */}
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
+          </Route>
+
+          {/* 404 */}
+          <Route path="*" element={<PublicLayout />}>
+            <Route path="*" element={<Home />} />
           </Route>
         </Routes>
       </div>

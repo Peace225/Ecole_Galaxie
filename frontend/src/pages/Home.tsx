@@ -10,7 +10,7 @@ import CTA from '../components/home/CTA';
 import Partners from '../components/home/Partners';
 
 // Images pour le Hero
-import hero1 from '../assets/hero1.jpg';
+import hero1 from '../assets/csig.jpg';
 import hero2 from '../assets/hero.jpg';
 import hero3 from '../assets/hero3.jpg';
 

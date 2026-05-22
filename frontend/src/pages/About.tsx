@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import aboutHero from '../assets/hero.jpg';
 import directorImg from '../assets/news1.jpeg';
-import hero1 from '../assets/hero1.jpg';
+import hero1 from '../assets/csig.jpg';
 import hero3 from '../assets/hero3.jpg';
 
 const fadeUp = {
