@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState, FormEvent, ChangeEvent } from 'react';
+import { useState, type FormEvent, type ChangeEvent } from 'react';
 import logo from '../assets/logo.jpg';
 
 const Footer = () => {

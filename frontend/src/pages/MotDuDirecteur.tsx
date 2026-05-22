@@ -1,23 +1,26 @@
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import directorImg from '../assets/news1.jpeg';
 
-const MotDuDirecteur = () => {
-  const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+// Définition propre du type Variants pour éviter les erreurs TS2322
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { 
+      duration: 0.7, 
+      ease: "easeInOut" // Utiliser une chaîne standard au lieu d'un tableau pour la compatibilité
     }
-  };
+  }
+};
 
+const MotDuDirecteur = () => {
   return (
     <div className="flex flex-col w-full bg-[#fafbfc]">
-
       {/* HERO */}
       <section className="relative bg-[#0047AB] text-white py-24 md:py-32 overflow-hidden">
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#FFCC00] rounded-full mix-blend-multiply filter blur- opacity-20"></div>
-        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-white/10 rounded-full filter blur-"></div>
+        <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#FFCC00] rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-white/10 rounded-full filter blur-3xl"></div>
 
         <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">
           <motion.span
@@ -53,7 +56,6 @@ const MotDuDirecteur = () => {
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
             <div className="grid lg:grid-cols-12 gap-0">
-
               {/* Photo */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -70,7 +72,6 @@ const MotDuDirecteur = () => {
                     className="relative z-10 w-full aspect-[4/5] object-cover rounded-3xl shadow-2xl"
                   />
                 </div>
-
                 <div className="mt-8 text-white relative z-10">
                   <h3 className="font-black text-2xl">M. Le Directeur</h3>
                   <p className="text-[#FFCC00] text-sm font-bold uppercase tracking-widest mt-1">Fondateur CSIG Bangui</p>
@@ -96,35 +97,20 @@ const MotDuDirecteur = () => {
                 </motion.h2>
 
                 <div className="space-y-5 text-gray-600 leading-relaxed">
+                  <motion.p variants={fadeUp}>Chers parents, chers élèves,</motion.p>
                   <motion.p variants={fadeUp}>
-                    Chers parents, chers élèves,
+                    C&apos;est avec une immense fierté que je vous accueille au <strong className="text-[#0047AB]">CSIG Bangui</strong>.
                   </motion.p>
-                  <motion.p variants={fadeUp}>
-                    C&apos;est avec une immense fierté que je vous accueille au <strong className="text-[#0047AB]">CSIG Bangui</strong>. Depuis notre implantation en République Centrafricaine, notre mission reste inchangée : offrir à notre jeunesse un enseignement d&apos;excellence qui allie rigueur académique, maîtrise du numérique et valeurs citoyennes.
-                  </motion.p>
-                  <motion.p variants={fadeUp}>
-                    Dans un monde en mutation, nous ne formons pas seulement des élèves pour réussir des examens. Nous formons des leaders, des innovateurs et des bâtisseurs pour la Centrafrique de demain.
-                  </motion.p>
-                  <motion.p variants={fadeUp}>
-                    Au CSIG, chaque enfant bénéficie d&apos;un suivi personnalisé, d&apos;infrastructures modernes et d&apos;un corps enseignant dévoué. Votre confiance est notre plus grande responsabilité.
-                  </motion.p>
-
                   <motion.blockquote
                     variants={fadeUp}
                     className="relative my-8 pl-6 py-4 bg-[#FFCC00]/5 border-l-4 border-[#FFCC00] rounded-r-xl"
                   >
                     <p className="text-[#0047AB] font-semibold italic text-lg">
-                      &quot;L&apos;éducation est l&apos;arme la plus puissante pour changer le monde. Au CSIG, nous l&apos;aiguisons chaque jour.&quot;
+                      &quot;L&apos;éducation est l&apos;arme la plus puissante pour changer le monde.&quot;
                     </p>
                   </motion.blockquote>
                 </div>
-
-                <motion.div variants={fadeUp} className="mt-10 pt-8 border-t border-gray-100">
-                  <p className="font-black text-[#0047AB] uppercase tracking-wider">Le Directeur Fondateur</p>
-                  <p className="text-sm text-gray-500 mt-1">CSIG Bangui – Depuis 2015</p>
-                </motion.div>
               </motion.div>
-
             </div>
           </div>
         </div>
